@@ -128,6 +128,28 @@
           }
         }
       }
+    },
+    "/system/conf/list": {
+      "get": {
+        "description": "配置列表",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "Plant deleted",
+            "content": {}
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "webhooks": {

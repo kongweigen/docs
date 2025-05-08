@@ -53,6 +53,23 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "火宝 API",
+        "groups": [
+          {
+            "group": "API 文档",
+            "pages": [
+              "huobao-api/introduction"
+            ]
+          },
+          {
+            "group": "案例",
+            "pages": [
+              "huobao-api/endpoint/get"
+            ]
+          }
+        ]
       }
     ],
     "global": {

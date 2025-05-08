@@ -129,7 +129,7 @@
         }
       }
     },
-    "/system/conf/list": {
+    "/plants/system/conf/list": {
       "get": {
         "description": "配置列表",
         "parameters": [],

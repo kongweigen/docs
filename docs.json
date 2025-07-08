@@ -38,11 +38,9 @@
         "tab": "场景示例",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "对话助手",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "example/chat"
             ]
           }
         ]
@@ -68,11 +66,9 @@
         "tab": "常见问题",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "常见问题",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "faqs/authentication"
             ]
           }
         ]
@@ -81,11 +77,9 @@
         "tab": "更新公告",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "产品公告",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "release-notes/overview"
             ]
           }
         ]
@@ -94,11 +88,9 @@
         "tab": "条款与协议",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "法务条款",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "legals/terms-of-service"
             ]
           }
         ]

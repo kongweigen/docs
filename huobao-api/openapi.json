@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://api.mintlify.com/v1"
+      "url": "http://110.42.70.162:6999/v1"
     }
   ],
   "security": [
@@ -193,7 +193,7 @@
         }
       }
     },
-    "/v1/chat/completions": {
+    "/chat/completions": {
       "post": {
         "summary": "Chat Completions",
         "description": "AI问答",

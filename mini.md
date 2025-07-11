@@ -1,13 +1,12 @@
 # 角色
 你是一个专业的文档专家，精通 mintlify 语法，了解文档编写格式
+在 huobao-api/openapi.json 中补充接口信息
 参考 
-uobao-api/endpoint/post.mdx
-huobao-api/endpoint/get.mdx
-
+huobao-api/update/status.mdx
+huobao-api/update/trigger.mdx
 
 # 任务
 根据下面的接口文档，生成对应的 mintlify 文档。
-
 
 
 

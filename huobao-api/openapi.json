@@ -203,10 +203,71 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": ["model", "messages"],
                 "properties": {
-                  "empty": {
+                  "model": {
+                    "type": "string",
+                    "description": "使用的AI模型名称",
+                    "example": "dall-e-3",
+                    "enum": ["dall-e-3", "gpt-4", "gpt-3.5-turbo"]
+                  },
+                  "messages": {
+                    "type": "array",
+                    "description": "对话消息列表",
+                    "items": {
+                      "type": "object",
+                      "required": ["content", "role"],
+                      "properties": {
+                        "content": {
+                          "type": "string",
+                          "description": "消息内容"
+                        },
+                        "role": {
+                          "type": "string",
+                          "description": "消息角色",
+                          "enum": ["user", "assistant", "system"]
+                        }
+                      }
+                    }
+                  },
+                  "group": {
+                    "type": "string",
+                    "description": "分组标识",
+                    "default": "default",
+                    "example": "default"
+                  },
+                  "stream": {
                     "type": "boolean",
-                    "description": "Empty parameter"
+                    "description": "是否启用流式响应",
+                    "default": true
+                  },
+                  "temperature": {
+                    "type": "number",
+                    "description": "控制输出随机性的温度参数",
+                    "minimum": 0,
+                    "maximum": 2,
+                    "default": 0.7
+                  },
+                  "top_p": {
+                    "type": "number",
+                    "description": "核采样参数",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "default": 1
+                  },
+                  "frequency_penalty": {
+                    "type": "number",
+                    "description": "频率惩罚参数",
+                    "minimum": -2,
+                    "maximum": 2,
+                    "default": 0
+                  },
+                  "presence_penalty": {
+                    "type": "number",
+                    "description": "存在惩罚参数",
+                    "minimum": -2,
+                    "maximum": 2,
+                    "default": 0
                   }
                 }
               }
@@ -219,14 +280,14 @@
             "content": {
               "text/event-stream": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "timeout": {
-                      "type": "integer",
-                      "format": "int64",
-                      "description": "Timeout value"
-                    }
-                  }
+                  "type": "string",
+                  "description": "流式响应数据，每行为一个JSON对象，格式为Server-Sent Events",
+                  "example": "data: {\"id\":\"chatcmpl-123\",\"object\":\"chat.completion.chunk\",\"created\":1677652288,\"model\":\"dall-e-3\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"Hello\"},\"finish_reason\":null}]}\n\ndata: [DONE]\n\n"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatCompletionResponse"
                 }
               }
             }
@@ -327,6 +388,79 @@
           "success": {
             "type": "boolean",
             "description": "Success status"
+          }
+        }
+      },
+      "ChatCompletionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "聊天完成的唯一标识符"
+          },
+          "object": {
+            "type": "string",
+            "description": "对象类型",
+            "enum": ["chat.completion"]
+          },
+          "created": {
+            "type": "integer",
+            "format": "int64",
+            "description": "创建时间戳"
+          },
+          "model": {
+            "type": "string",
+            "description": "使用的模型名称"
+          },
+          "choices": {
+            "type": "array",
+            "description": "生成的选择列表",
+            "items": {
+              "type": "object",
+              "properties": {
+                "index": {
+                  "type": "integer",
+                  "description": "选择的索引"
+                },
+                "message": {
+                  "type": "object",
+                  "properties": {
+                    "role": {
+                      "type": "string",
+                      "description": "消息角色",
+                      "enum": ["assistant"]
+                    },
+                    "content": {
+                      "type": "string",
+                      "description": "消息内容"
+                    }
+                  }
+                },
+                "finish_reason": {
+                  "type": "string",
+                  "description": "完成原因",
+                  "enum": ["stop", "length", "content_filter", "tool_calls"]
+                }
+              }
+            }
+          },
+          "usage": {
+            "type": "object",
+            "description": "使用情况统计",
+            "properties": {
+              "prompt_tokens": {
+                "type": "integer",
+                "description": "提示词token数量"
+              },
+              "completion_tokens": {
+                "type": "integer",
+                "description": "完成内容token数量"
+              },
+              "total_tokens": {
+                "type": "integer",
+                "description": "总token数量"
+              }
+            }
           }
         }
       }

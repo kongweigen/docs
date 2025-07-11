@@ -55,8 +55,9 @@
               {
                 "group": "接口",
                 "pages": [
-                  "huobao-api/endpoint/chat-completions",
-                  "huobao-api/endpoint/get"
+                  "huobao-api/chat/completions",
+                  "huobao-api/update/status",
+                  "huobao-api/update/trigger"
                 ]
               }
             ]

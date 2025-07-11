@@ -53,17 +53,12 @@
             "pages": [
               "huobao-api/introduction",
               {
-                "group": "案例",
+                "group": "接口",
                 "pages": [
+                  "huobao-api/endpoint/chat-completions",
                   "huobao-api/endpoint/get"
                 ]
               }
-            ]
-          },
-          {
-            "group": "案例",
-            "pages": [
-              "huobao-api/endpoint/get"
             ]
           }
         ]

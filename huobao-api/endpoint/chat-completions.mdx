@@ -1,0 +1,90 @@
+---
+title: "问答"
+openapi: "POST /v1/chat/completions"
+description: "AI问答接口"
+---
+
+## 接口描述
+
+AI问答接口，用于与AI进行对话交互。
+
+## 请求参数
+
+<ParamField body="request" type="object" required>
+  查询参数对象
+</ParamField>
+
+<ParamField body="jSONObject" type="JSONObject" required>
+  请求体JSON对象
+  <Expandable title="JSONObject 属性">
+    <ParamField body="empty" type="boolean">
+      是否为空
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+## 请求示例
+
+```javascript
+{
+  "empty": true
+}
+```
+
+## 响应格式
+
+### 成功响应 (200)
+
+<ResponseField name="timeout" type="integer(int64)">
+  超时时间
+</ResponseField>
+
+```javascript
+{
+  "timeout": 0
+}
+```
+
+### 错误响应 (400/401/403/404/405/500)
+
+<ResponseField name="code" type="integer(int32)">
+  错误代码
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  错误信息
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  响应数据
+</ResponseField>
+
+<ResponseField name="timestamp" type="integer(int64)">
+  时间戳
+</ResponseField>
+
+<ResponseField name="success" type="boolean">
+  是否成功
+</ResponseField>
+
+```javascript
+{
+  "code": 0,
+  "message": "",
+  "data": {},
+  "timestamp": 0,
+  "success": true
+}
+```
+
+## 状态码说明
+
+| 状态码 | 说明 | 
+| ------ | ---- |
+| 200 | 请求成功 |
+| 400 | 请求参数错误 |
+| 401 | 未授权 |
+| 403 | 禁止访问 |
+| 404 | 资源未找到 |
+| 405 | 请求方法不允许 |
+| 500 | 服务器内部错误 |

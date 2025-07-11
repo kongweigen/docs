@@ -51,7 +51,13 @@
           {
             "group": "API 文档",
             "pages": [
-              "huobao-api/introduction"
+              "huobao-api/introduction",
+              {
+                "group": "案例",
+                "pages": [
+                  "huobao-api/endpoint/get"
+                ]
+              }
             ]
           },
           {

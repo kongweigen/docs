@@ -7,8 +7,7 @@
   },
   "servers": [
     {
-      
-      "url": "https://chatfire.site"
+      "url": "http://110.42.70.162:6999/v1"
     }
   ],
   "security": [
@@ -20,308 +19,6 @@
     "enabled": true
   },
   "paths": {
-    "/project/update/{projectId}": {
-      "post": {
-        "summary": "Trigger Update",
-        "description": "Trigger an update after updating your OpenAPI document by calling this endpoint in a CI check",
-        "parameters": [
-          {
-            "name": "projectId",
-            "in": "path",
-            "description": "The ID of the project to trigger an update on. Can be retrieved from your dashboard.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "A successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "statusId": {
-                      "type": "string",
-                      "description": "The status id of the triggered updated."
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/project/update-status/{statusId}": {
-      "get": {
-        "summary": "Get Update Status",
-        "description": "Get the status of an update from the status ID",
-        "parameters": [
-          {
-            "name": "statusId",
-            "in": "path",
-            "description": "The status ID of a triggered update.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "_id": {
-                      "type": "string",
-                      "description": "The status id of the triggered updated."
-                    },
-                    "projectId": {
-                      "type": "string",
-                      "description": "The documentation project ID."
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "description": "An ISODate with the specified datetime in UTC"
-                    },
-                    "endedAt": {
-                      "type": "string",
-                      "description": "An ISODate with the specified datetime in UTC"
-                    },
-                    "status": {
-                      "type": "string",
-                      "enum": ["queued", "in_progress", "success", "failure"],
-                      "description": "The status of the update."
-                    },
-                    "summary": {
-                      "type": "string",
-                      "description": "Summary of the status of the update"
-                    },
-                    "logs": {
-                      "type": "array",
-                      "description": "An array of logs.",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "subdomain": {
-                      "type": "string",
-                      "description": "The subdomain of the docs being updated."
-                    },
-                    "screenshot": {
-                      "type": "string",
-                      "description": "A screenshot of the docs."
-                    },
-                    "screenshotLight": {
-                      "type": "string",
-                      "description": "A screenshot of the docs."
-                    },
-                    "screenshotDark": {
-                      "type": "string",
-                      "description": "A screenshot of the docs in dark mode."
-                    },
-                    "author": {
-                      "type": "string",
-                      "description": "The author of the update."
-                    },
-                    "commit": {
-                      "type": "object",
-                      "description": "The commit details",
-                      "properties": {
-                        "sha": {
-                          "type": "string",
-                          "description": "The SHA of the commit."
-                        },
-                        "ref": {
-                          "type": "string",
-                          "description": "The ref of the commit."
-                        },
-                        "message": {
-                          "type": "string",
-                          "description": "The commit message."
-                        },
-                        "filesChanged": {
-                          "type": "object",
-                          "description": "Details on the changed files.",
-                          "properties": {
-                            "added": {
-                              "type": "array",
-                              "description": "New files added.",
-                              "items": {
-                                "type": "string"
-                              }
-                            },
-                            "modified": {
-                              "type": "array",
-                              "description": "Existing files that were modified.",
-                              "items": {
-                                "type": "string"
-                              }
-                            },
-                            "removed": {
-                              "type": "array",
-                              "description": "Files that were removed.",
-                              "items": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "source": {
-                      "type": "string",
-                      "description": "The source of the update trigger.",
-                      "enum": [
-                        "internal",
-                        "github-app-installation",
-                        "api",
-                        "github",
-                        "dashboard"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/box/ai/product/list": {
-      "get": {
-        "summary": "产品列表",
-        "description": "获取产品列表",
-        "responses": {
-          "200": {
-            "description": "A successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "_id": {
-                      "type": "string",
-                      "description": "The status id of the triggered updated."
-                    },
-                    "projectId": {
-                      "type": "string",
-                      "description": "The documentation project ID."
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "description": "An ISODate with the specified datetime in UTC"
-                    },
-                    "endedAt": {
-                      "type": "string",
-                      "description": "An ISODate with the specified datetime in UTC"
-                    },
-                    "status": {
-                      "type": "string",
-                      "enum": ["queued", "in_progress", "success", "failure"],
-                      "description": "The status of the update."
-                    },
-                    "summary": {
-                      "type": "string",
-                      "description": "Summary of the status of the update"
-                    },
-                    "logs": {
-                      "type": "array",
-                      "description": "An array of logs.",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "subdomain": {
-                      "type": "string",
-                      "description": "The subdomain of the docs being updated."
-                    },
-                    "screenshot": {
-                      "type": "string",
-                      "description": "A screenshot of the docs."
-                    },
-                    "screenshotLight": {
-                      "type": "string",
-                      "description": "A screenshot of the docs."
-                    },
-                    "screenshotDark": {
-                      "type": "string",
-                      "description": "A screenshot of the docs in dark mode."
-                    },
-                    "author": {
-                      "type": "string",
-                      "description": "The author of the update."
-                    },
-                    "commit": {
-                      "type": "object",
-                      "description": "The commit details",
-                      "properties": {
-                        "sha": {
-                          "type": "string",
-                          "description": "The SHA of the commit."
-                        },
-                        "ref": {
-                          "type": "string",
-                          "description": "The ref of the commit."
-                        },
-                        "message": {
-                          "type": "string",
-                          "description": "The commit message."
-                        },
-                        "filesChanged": {
-                          "type": "object",
-                          "description": "Details on the changed files.",
-                          "properties": {
-                            "added": {
-                              "type": "array",
-                              "description": "New files added.",
-                              "items": {
-                                "type": "string"
-                              }
-                            },
-                            "modified": {
-                              "type": "array",
-                              "description": "Existing files that were modified.",
-                              "items": {
-                                "type": "string"
-                              }
-                            },
-                            "removed": {
-                              "type": "array",
-                              "description": "Files that were removed.",
-                              "items": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "source": {
-                      "type": "string",
-                      "description": "The source of the update trigger.",
-                      "enum": [
-                        "internal",
-                        "github-app-installation",
-                        "api",
-                        "github",
-                        "dashboard"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/chat/completions": {
       "post": {
         "summary": "Chat Completions",
@@ -483,6 +180,273 @@
           }
         }
       }
+    },
+    "/image/jimeng/generate": {
+      "post": {
+        "summary": "即梦图片生成",
+        "description": "使用即梦AI生成图片",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["prompt"],
+                "properties": {
+                  "prompt": {
+                    "type": "string",
+                    "description": "图片生成提示词",
+                    "example": "一只可爱的小猫在花园里玩耍"
+                  },
+                  "size": {
+                    "type": "string",
+                    "description": "图片尺寸",
+                    "enum": ["1024x1024", "1024x1792", "1792x1024"],
+                    "default": "1024x1024"
+                  },
+                  "quality": {
+                    "type": "string",
+                    "description": "图片质量",
+                    "enum": ["standard", "hd"],
+                    "default": "standard"
+                  },
+                  "style": {
+                    "type": "string",
+                    "description": "图片风格",
+                    "enum": ["vivid", "natural"],
+                    "default": "vivid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageGenerateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultObject"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/image/jimeng/status": {
+      "get": {
+        "summary": "即梦任务状态查询",
+        "description": "查询即梦图片生成任务状态",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "任务ID"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageStatusResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/image/keling/generate": {
+      "post": {
+        "summary": "可灵图片生成",
+        "description": "使用可灵AI生成图片",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["prompt"],
+                "properties": {
+                  "prompt": {
+                    "type": "string",
+                    "description": "图片生成提示词",
+                    "example": "一幅美丽的山水画，中国风格"
+                  },
+                  "aspect_ratio": {
+                    "type": "string",
+                    "description": "图片宽高比",
+                    "enum": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+                    "default": "1:1"
+                  },
+                  "image_count": {
+                    "type": "integer",
+                    "description": "生成图片数量",
+                    "minimum": 1,
+                    "maximum": 4,
+                    "default": 1
+                  },
+                  "mode": {
+                    "type": "string",
+                    "description": "生成模式",
+                    "enum": ["standard", "professional"],
+                    "default": "standard"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageGenerateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultObject"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/image/keling/status": {
+      "get": {
+        "summary": "可灵任务状态查询",
+        "description": "查询可灵图片生成任务状态",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "任务ID"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageStatusResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultObject"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -588,6 +552,158 @@
               "total_tokens": {
                 "type": "integer",
                 "description": "总token数量"
+              }
+            }
+          }
+        }
+      },
+      "ImageGenerateResponse": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "任务唯一标识符"
+          },
+          "status": {
+            "type": "string",
+            "description": "任务状态",
+            "enum": ["pending", "processing", "completed", "failed"]
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "任务创建时间戳"
+          },
+          "model": {
+            "type": "string",
+            "description": "使用的AI模型",
+            "enum": ["jimeng", "keling"]
+          },
+          "prompt": {
+            "type": "string",
+            "description": "原始提示词"
+          },
+          "images": {
+            "type": "array",
+            "description": "生成的图片列表（仅在completed状态时返回）",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "description": "图片URL"
+                },
+                "width": {
+                  "type": "integer",
+                  "description": "图片宽度"
+                },
+                "height": {
+                  "type": "integer",
+                  "description": "图片高度"
+                },
+                "format": {
+                  "type": "string",
+                  "description": "图片格式",
+                  "enum": ["png", "jpg", "webp"]
+                }
+              }
+            }
+          },
+          "error": {
+            "type": "object",
+            "description": "错误信息（仅在failed状态时返回）",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "错误代码"
+              },
+              "message": {
+                "type": "string",
+                "description": "错误描述"
+              }
+            }
+          }
+        }
+      },
+      "ImageStatusResponse": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "任务唯一标识符"
+          },
+          "status": {
+            "type": "string",
+            "description": "任务状态",
+            "enum": ["pending", "processing", "completed", "failed"]
+          },
+          "progress": {
+            "type": "integer",
+            "description": "任务进度百分比 (0-100)",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "任务创建时间戳"
+          },
+          "updated_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "任务最后更新时间戳"
+          },
+          "completed_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "任务完成时间戳（仅在completed状态时返回）"
+          },
+          "model": {
+            "type": "string",
+            "description": "使用的AI模型",
+            "enum": ["jimeng", "keling"]
+          },
+          "prompt": {
+            "type": "string",
+            "description": "原始提示词"
+          },
+          "images": {
+            "type": "array",
+            "description": "生成的图片列表（仅在completed状态时返回）",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "description": "图片URL"
+                },
+                "width": {
+                  "type": "integer",
+                  "description": "图片宽度"
+                },
+                "height": {
+                  "type": "integer",
+                  "description": "图片高度"
+                },
+                "format": {
+                  "type": "string",
+                  "description": "图片格式",
+                  "enum": ["png", "jpg", "webp"]
+                }
+              }
+            }
+          },
+          "error": {
+            "type": "object",
+            "description": "错误信息（仅在failed状态时返回）",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "错误代码"
+              },
+              "message": {
+                "type": "string",
+                "description": "错误描述"
               }
             }
           }

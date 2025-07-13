@@ -15,11 +15,7 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
+            "pages": ["index", "quickstart", "development"]
           },
           {
             "group": "Essentials",
@@ -39,9 +35,7 @@
         "groups": [
           {
             "group": "对话助手",
-            "pages": [
-              "example/chat"
-            ]
+            "pages": ["example/chat"]
           }
         ]
       },
@@ -49,16 +43,19 @@
         "tab": "API 手册",
         "groups": [
           {
-            "group": "API 文档",
+            "group": "文本系列",
+            "pages": ["huobao-api/chat/completions", "huobao-api/product/index"]
+          },
+          {
+            "group": "图片系列",
             "pages": [
-              "huobao-api/introduction",
               {
-                "group": "接口",
-                "pages": [
-                  "huobao-api/chat/completions",
-                  "huobao-api/update/status",
-                  "huobao-api/update/trigger"
-                ]
+                "group": "即梦",
+                "pages": ["huobao-api/image/jimeng/generate", "huobao-api/image/jimeng/status"]
+              },
+              {
+                "group": "可灵",
+                "pages": ["huobao-api/image/keling/generate", "huobao-api/image/keling/status"]
               }
             ]
           }
@@ -69,9 +66,7 @@
         "groups": [
           {
             "group": "常见问题",
-            "pages": [
-              "faqs/authentication"
-            ]
+            "pages": ["faqs/authentication"]
           }
         ]
       },
@@ -80,9 +75,7 @@
         "groups": [
           {
             "group": "产品公告",
-            "pages": [
-              "release-notes/overview"
-            ]
+            "pages": ["release-notes/overview"]
           }
         ]
       },
@@ -91,20 +84,15 @@
         "groups": [
           {
             "group": "法务条款",
-            "pages": [
-              "legals/terms-of-service"
-            ]
+            "pages": ["legals/terms-of-service"]
           }
         ]
       }
-
     ]
   },
   "logo": {
     "light": "/logo/logo.png",
     "dark": "/logo/logo.png"
   },
-  "footer": {
-    
-  }
+  "footer": {}
 }

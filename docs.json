@@ -14,18 +14,19 @@
         "tab": "用户指南",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "产品简介",
             "pages": ["index", "quickstart", "development"]
           },
           {
-            "group": "Essentials",
+            "group": "用户指南",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "userguide/introduction",
+              "userguide/markdown",
+              "userguide/code",
+              "userguide/images",
+              "userguide/settings",
+              "userguide/navigation",
+              "userguide/reusable-snippets"
             ]
           }
         ]
@@ -42,6 +43,10 @@
       {
         "tab": "API 手册",
         "groups": [
+          {
+            "group": "API 概览",
+            "pages": ["huobao-api/introduction"]
+          },
           {
             "group": "文本系列",
             "pages": ["huobao-api/chat/completions", "huobao-api/product/index"]

@@ -1,3 +1,103 @@
 ---
-title: "文本系列"
+title: "API 介绍"
+description: "火宝 API 接口文档和使用指南"
 ---
+
+# 火宝 API 接口文档
+
+欢迎使用火宝 API！我们提供了丰富的人工智能模型接口，帮助您快速构建智能应用。
+
+## API 概览
+
+火宝 API 提供以下主要功能模块：
+
+### 🤖 文本系列
+
+提供强大的大语言模型服务，支持对话、文本生成、代码生成等多种场景。
+
+<CardGroup cols={2}>
+  <Card
+    title="对话补全"
+    icon="comments"
+    href="/huobao-api/chat/completions"
+  >
+    支持多轮对话的智能聊天接口
+  </Card>
+  <Card
+    title="产品服务"
+    icon="cube"
+    href="/huobao-api/product/index"
+  >
+    查看可用的模型和产品服务
+  </Card>
+</CardGroup>
+
+### 🎨 图片系列
+
+提供先进的图像生成和处理服务，支持多种风格和场景。
+
+<CardGroup cols={2}>
+  <Card
+    title="即梦图像生成"
+    icon="image"
+    href="/huobao-api/image/jimeng/generate"
+  >
+    基于即梦模型的图像生成服务
+  </Card>
+  <Card
+    title="可灵图像生成"
+    icon="palette"
+    href="/huobao-api/image/keling/generate"
+  >
+    基于可灵模型的图像生成服务
+  </Card>
+</CardGroup>
+
+## 快速开始
+
+### 1. 获取 API Key
+
+在使用 API 之前，您需要先获取 API Key。请访问控制台获取您的专属密钥。
+
+### 2. 发起第一个请求
+
+以下是一个简单的对话请求示例：
+
+```bash
+curl -X POST "https://api.chatfire.cn/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{
+    "model": "qwen2.5-72b-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "你好，请介绍一下自己"
+      }
+    ]
+  }'
+```
+
+### 3. 处理响应
+
+API 将返回 JSON 格式的响应，包含模型生成的内容和相关元数据。
+
+## 认证方式
+
+所有 API 请求都需要在请求头中包含有效的 API Key：
+
+```
+Authorization: Bearer YOUR_API_KEY
+```
+
+## 错误处理
+
+API 使用标准的 HTTP 状态码来表示请求的成功或失败状态。详细的错误信息会在响应体中提供。
+
+## 速率限制
+
+为了确保服务的稳定性，我们对 API 请求实施了速率限制。具体限制取决于您的订阅计划。
+
+## 支持与反馈
+
+如果您在使用过程中遇到任何问题，请查看我们的[常见问题](/faqs/authentication)或联系技术支持。

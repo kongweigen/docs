@@ -1,0 +1,121 @@
+---
+title: '快速上手'
+description: '快速了解如何使用 ChatFire AI 平台'
+---
+
+## 1. 登录平台
+
+访问 [ChatFire AI 官网](https://chatfire.ai) 并点击右上角"登录"按钮，按照提示填写您的基本信息进行登录。
+
+目前平台支持：
+- 短信登录
+- 邮箱登录  
+- GitHub OAuth 登录
+- Google OAuth 登录
+
+## 2. 查看模型列表和模型详情
+
+通过**模型广场**查看当前可用的模型详情，包括：
+- 模型价格
+- 用户可用的最高限速
+- 模型性能指标
+- 支持的功能特性
+
+您可以通过模型详情页的"在线体验"进入到模型体验中心。
+
+## 3. 在 Playground 体验 AI 能力
+
+进入"体验中心（Playground）"页面：
+
+1. **左侧栏选择模型类型**：
+   - 语言模型（文本生成、对话）
+   - 文生图模型（文本到图像）
+   - 图生图模型（图像编辑）
+
+2. **配置参数**：
+   - 选择相应模型
+   - 输入相关参数
+   - 编写 prompt
+
+3. **运行体验**：
+   - 点击"运行"按钮
+   - 实时查看模型生成的结果
+
+## 4. 使用 ChatFire AI API 调用 AI 能力
+
+### 4.1 创建 API Key
+
+1. 进入 **API 密钥** 页面
+2. 点击"新建 API 密钥"
+3. 创建您的 API Key
+4. 妥善保存 API Key（仅显示一次）
+
+### 4.2 通过 REST 接口进行服务调用
+
+您可以直接在平台的"文档链接"中使用您的 API Key 进行在线调用，此处可以生成对应语言的代码。
+
+### 4.3 通过 OpenAI 兼容接口调用
+
+当前大语言模型部分支持以 OpenAI 库进行调用。
+
+**安装依赖**：
+
+确保安装 Python 3.7.1 或更高版本，然后安装 OpenAI Python 库：
+
+```bash
+pip install --upgrade openai
+```
+
+**代码示例**：
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="YOUR_API_KEY_FROM_CHATFIRE_AI", 
+    base_url="https://api.chatfire.ai/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {
+            'role': 'user', 
+            'content': "你好，请介绍一下人工智能的发展历程"
+        }
+    ],
+    stream=True
+)
+
+for chunk in response:
+    if not chunk.choices:
+        continue
+    if chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end="", flush=True)
+```
+
+## 5. 平台核心能力
+
+### 文本生成
+- 多种大语言模型支持
+- 对话式交互
+- 文本创作与编辑
+- 代码生成与调试
+
+### 图像生成
+- 文本到图像生成
+- 图像风格转换
+- 图像编辑与优化
+- 多种艺术风格支持
+
+### API 集成
+- OpenAI 兼容接口
+- RESTful API 支持
+- 多语言 SDK
+- 实时流式响应
+
+## 下一步
+
+- 查看 [API 文档](/huobao-api/introduction) 了解详细的接口说明
+- 浏览 [场景示例](/example/chat) 学习具体应用案例
+- 如有问题，请查看 [常见问题](/faqs/authentication) 或联系客服支持

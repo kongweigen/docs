@@ -45,11 +45,11 @@
           },
           {
             "group": "文本系列",
-            "pages": ["huobao-api/chat/completions", "huobao-api/product/index"]
+            "pages": ["huobao-api/chat/completions"]
           },
           {
             "group": "图片系列",
-            "pages": ["huobao-api/images/completions"]
+            "pages": ["huobao-api/images/generations"]
           }
         ]
       },

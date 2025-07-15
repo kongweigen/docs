@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://110.42.70.162:6999/v1"
+      "url": "http://api.chatfire.site/v1"
     }
   ],
   "security": [
@@ -181,27 +181,51 @@
         }
       }
     },
-    "/image/jimeng/generate": {
+    "/image/generate": {
       "post": {
-        "summary": "即梦图片生成",
-        "description": "使用即梦AI生成图片",
+        "summary": "AI图片生成",
+        "description": "使用AI模型生成图片，支持文生图和图生图",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["prompt"],
+                "required": ["model", "prompt"],
                 "properties": {
+                  "model": {
+                    "type": "string",
+                    "description": "使用的AI模型名称",
+                    "enum": ["seedream-3.0", "jimeng", "keling", "dall-e-3"],
+                    "example": "seedream-3.0"
+                  },
                   "prompt": {
                     "type": "string",
-                    "description": "图片生成提示词",
-                    "example": "一只可爱的小猫在花园里玩耍"
+                    "description": "图片生成提示词，支持文生图；结合url参数可实现图生图",
+                    "example": "3D魔童哪吒 c4d 搬砖 很开心， 很快乐， 精神抖擞， 背景是数不清的敖丙虚化 视觉冲击力强 大师构图 色彩鲜艳丰富 吸引人 背景用黄金色艺术字写着\"搬砖挣钱\" 冷暖色对比"
+                  },
+                  "url": {
+                    "type": "string",
+                    "description": "参考图片URL，用于图生图功能，与prompt结合使用",
+                    "format": "uri"
+                  },
+                  "n": {
+                    "type": "integer",
+                    "description": "生成图片的数量",
+                    "minimum": 1,
+                    "maximum": 4,
+                    "default": 1
+                  },
+                  "response_format": {
+                    "type": "string",
+                    "description": "响应格式类型",
+                    "enum": ["url", "b64_json", "oss_url"],
+                    "default": "url"
                   },
                   "size": {
                     "type": "string",
                     "description": "图片尺寸",
-                    "enum": ["1024x1024", "1024x1792", "1792x1024"],
+                    "enum": ["1024x1024", "1024x1792", "1792x1024", "1328x1328"],
                     "default": "1024x1024"
                   },
                   "quality": {
@@ -265,144 +289,10 @@
         }
       }
     },
-    "/image/jimeng/status": {
+    "/image/status": {
       "get": {
-        "summary": "即梦任务状态查询",
-        "description": "查询即梦图片生成任务状态",
-        "parameters": [
-          {
-            "name": "task_id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "任务ID"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ImageStatusResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResultObject"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Task Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResultObject"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/image/keling/generate": {
-      "post": {
-        "summary": "可灵图片生成",
-        "description": "使用可灵AI生成图片",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["prompt"],
-                "properties": {
-                  "prompt": {
-                    "type": "string",
-                    "description": "图片生成提示词",
-                    "example": "一幅美丽的山水画，中国风格"
-                  },
-                  "aspect_ratio": {
-                    "type": "string",
-                    "description": "图片宽高比",
-                    "enum": ["1:1", "16:9", "9:16", "4:3", "3:4"],
-                    "default": "1:1"
-                  },
-                  "image_count": {
-                    "type": "integer",
-                    "description": "生成图片数量",
-                    "minimum": 1,
-                    "maximum": 4,
-                    "default": 1
-                  },
-                  "mode": {
-                    "type": "string",
-                    "description": "生成模式",
-                    "enum": ["standard", "professional"],
-                    "default": "standard"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ImageGenerateResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResultObject"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResultObject"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResultObject"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/image/keling/status": {
-      "get": {
-        "summary": "可灵任务状态查询",
-        "description": "查询可灵图片生成任务状态",
+        "summary": "图片生成任务状态查询",
+        "description": "查询图片生成任务状态",
         "parameters": [
           {
             "name": "task_id",
@@ -577,11 +467,16 @@
           "model": {
             "type": "string",
             "description": "使用的AI模型",
-            "enum": ["jimeng", "keling"]
+            "enum": ["seedream-3.0", "jimeng", "keling", "dall-e-3"]
           },
           "prompt": {
             "type": "string",
             "description": "原始提示词"
+          },
+          "response_format": {
+            "type": "string",
+            "description": "响应格式类型",
+            "enum": ["url", "b64_json", "oss_url"]
           },
           "images": {
             "type": "array",
@@ -591,7 +486,15 @@
               "properties": {
                 "url": {
                   "type": "string",
-                  "description": "图片URL"
+                  "description": "图片URL（response_format为url或oss_url时返回）"
+                },
+                "b64_json": {
+                  "type": "string",
+                  "description": "Base64编码的图片数据（response_format为b64_json时返回）"
+                },
+                "oss_url": {
+                  "type": "string",
+                  "description": "OSS存储URL，有效期7天（response_format为oss_url时返回）"
                 },
                 "width": {
                   "type": "integer",
@@ -605,6 +508,11 @@
                   "type": "string",
                   "description": "图片格式",
                   "enum": ["png", "jpg", "webp"]
+                },
+                "expires_at": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "URL过期时间戳（仅url格式有效期24小时，oss_url格式有效期7天）"
                 }
               }
             }
@@ -661,11 +569,16 @@
           "model": {
             "type": "string",
             "description": "使用的AI模型",
-            "enum": ["jimeng", "keling"]
+            "enum": ["seedream-3.0", "jimeng", "keling", "dall-e-3"]
           },
           "prompt": {
             "type": "string",
             "description": "原始提示词"
+          },
+          "response_format": {
+            "type": "string",
+            "description": "响应格式类型",
+            "enum": ["url", "b64_json", "oss_url"]
           },
           "images": {
             "type": "array",
@@ -675,7 +588,15 @@
               "properties": {
                 "url": {
                   "type": "string",
-                  "description": "图片URL"
+                  "description": "图片URL（response_format为url或oss_url时返回）"
+                },
+                "b64_json": {
+                  "type": "string",
+                  "description": "Base64编码的图片数据（response_format为b64_json时返回）"
+                },
+                "oss_url": {
+                  "type": "string",
+                  "description": "OSS存储URL，有效期7天（response_format为oss_url时返回）"
                 },
                 "width": {
                   "type": "integer",
@@ -689,6 +610,11 @@
                   "type": "string",
                   "description": "图片格式",
                   "enum": ["png", "jpg", "webp"]
+                },
+                "expires_at": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "URL过期时间戳（仅url格式有效期24小时，oss_url格式有效期7天）"
                 }
               }
             }

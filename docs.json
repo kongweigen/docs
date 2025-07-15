@@ -15,21 +15,15 @@
         "groups": [
           {
             "group": "产品简介",
-            "pages": [
-              "userguide/introduction"
-            ]
+            "pages": ["userguide/introduction"]
           },
           {
             "group": "快速上手",
-            "pages": [
-              "userguide/quickstart"
-            ]
+            "pages": ["userguide/quickstart"]
           },
           {
             "group": "平台能力",
-            "pages": [
-              "userguide/capabilities"
-            ]
+            "pages": ["userguide/capabilities"]
           }
         ]
       },
@@ -57,12 +51,8 @@
             "group": "图片系列",
             "pages": [
               {
-                "group": "即梦",
-                "pages": ["huobao-api/image/jimeng/generate", "huobao-api/image/jimeng/status"]
-              },
-              {
-                "group": "可灵",
-                "pages": ["huobao-api/image/keling/generate", "huobao-api/image/keling/status"]
+                "group": "生图",
+                "pages": ["huobao-api/image/generate"]
               }
             ]
           }

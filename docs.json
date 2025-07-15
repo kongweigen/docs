@@ -49,12 +49,7 @@
           },
           {
             "group": "图片系列",
-            "pages": [
-              {
-                "group": "生图",
-                "pages": ["huobao-api/image/generate"]
-              }
-            ]
+            "pages": ["huobao-api/images/generate"]
           }
         ]
       },

@@ -49,7 +49,7 @@
           },
           {
             "group": "图片系列",
-            "pages": ["huobao-api/images/generate"]
+            "pages": ["huobao-api/images/completions"]
           }
         ]
       },

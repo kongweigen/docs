@@ -181,7 +181,7 @@
         }
       }
     },
-    "/image/generate": {
+    "/images/completions": {
       "post": {
         "summary": "AI图片生成",
         "description": "使用AI模型生成图片，支持文生图和图生图",

@@ -348,28 +348,66 @@
                       "model": {
                         "type": "string",
                         "description": "即梦模型",
-                        "enum": ["doubao-seaweed-241128"],
-                        "example": "doubao-seaweed-241128"
+                        "enum": ["doubao-seedance-1-0-lite-i2v-250428"],
+                        "example": "doubao-seedance-1-0-lite-i2v-250428"
                       },
                       "content": {
                         "type": "array",
                         "description": "内容列表",
                         "items": {
                           "type": "object",
-                          "required": ["type", "text"],
-                          "properties": {
-                            "type": {
-                              "type": "string",
-                              "description": "内容类型",
-                              "enum": ["text"]
+                          "oneOf": [
+                            {
+                              "type": "object",
+                              "required": ["type", "text"],
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "description": "内容类型",
+                                  "enum": ["text"]
+                                },
+                                "text": {
+                                  "type": "string",
+                                  "description": "视频生成提示词，支持添加--ratio参数指定视频比例",
+                                  "example": "多个镜头。一名侦探进入一间光线昏暗的房间。他检查桌上的线索，手里拿起桌上的某个物品。镜头转向他正在思索。 --ratio 16:9"
+                                }
+                              }
                             },
-                            "text": {
-                              "type": "string",
-                              "description": "视频生成提示词，支持添加--ratio参数指定视频比例",
-                              "example": "多个镜头。一名侦探进入一间光线昏暗的房间。他检查桌上的线索，手里拿起桌上的某个物品。镜头转向他正在思索。 --ratio 16:9"
+                            {
+                              "type": "object",
+                              "required": ["type", "image_url", "role"],
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "description": "内容类型",
+                                  "enum": ["image_url"]
+                                },
+                                "image_url": {
+                                  "type": "object",
+                                  "required": ["url"],
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "description": "图片URL",
+                                      "format": "uri",
+                                      "example": "https://ffile.chatfire.site/cf/chatfire-media/file/1754232741075_863fb7e6.jpg"
+                                    }
+                                  }
+                                },
+                                "role": {
+                                  "type": "string",
+                                  "description": "图片角色，用于指定首帧或尾帧",
+                                  "enum": ["first_frame", "last_frame"]
+                                }
+                              }
                             }
-                          }
+                          ]
                         }
+                      },
+                      "prompt": {
+                        "type": "string",
+                        "description": "视频生成提示词",
+                        "example": "身体慢慢变化，变成敖丙模样，变化过程渐变，不突兀"
                       }
                     }
                   },
@@ -404,7 +442,7 @@
                       "resolution": {
                         "type": "string",
                         "description": "视频分辨率",
-                        "enum": ["768P"],
+                        "enum": ["768P", "1080P"],
                         "default": "768P"
                       },
                       "enable_prompt_expansion": {
@@ -829,27 +867,61 @@
           "model": {
             "type": "string",
             "description": "使用的AI模型",
-            "enum": ["doubao-seaweed-241128", "minimax-hailuo-02"]
+            "enum": [
+              "doubao-seaweed-241128",
+              "minimax-hailuo-02",
+              "doubao-seedance-1-0-lite-i2v-250428"
+            ]
           },
           "prompt": {
             "type": "string",
-            "description": "原始提示词（海螺模型）"
+            "description": "原始提示词"
           },
           "content": {
             "type": "array",
-            "description": "原始内容列表（即梦模型）",
+            "description": "原始内容列表",
             "items": {
               "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "description": "内容类型"
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "内容类型",
+                      "enum": ["text"]
+                    },
+                    "text": {
+                      "type": "string",
+                      "description": "文本内容"
+                    }
+                  }
                 },
-                "text": {
-                  "type": "string",
-                  "description": "文本内容"
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "内容类型",
+                      "enum": ["image_url"]
+                    },
+                    "image_url": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "图片URL"
+                        }
+                      }
+                    },
+                    "role": {
+                      "type": "string",
+                      "description": "图片角色",
+                      "enum": ["first_frame", "last_frame"]
+                    }
+                  }
                 }
-              }
+              ]
             }
           },
           "response_format": {
@@ -952,29 +1024,64 @@
           "model": {
             "type": "string",
             "description": "使用的AI模型",
-            "enum": ["doubao-seaweed-241128", "minimax-hailuo-02"]
+            "enum": [
+              "doubao-seaweed-241128",
+              "minimax-hailuo-02",
+              "doubao-seedance-1-0-lite-i2v-250428"
+            ]
           },
           "prompt": {
             "type": "string",
-            "description": "原始提示词（海螺模型）"
+            "description": "原始提示词"
           },
           "content": {
             "type": "array",
-            "description": "原始内容列表（即梦模型）",
+            "description": "原始内容列表",
             "items": {
               "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "description": "内容类型"
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "内容类型",
+                      "enum": ["text"]
+                    },
+                    "text": {
+                      "type": "string",
+                      "description": "文本内容"
+                    }
+                  }
                 },
-                "text": {
-                  "type": "string",
-                  "description": "文本内容"
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "内容类型",
+                      "enum": ["image_url"]
+                    },
+                    "image_url": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "图片URL"
+                        }
+                      }
+                    },
+                    "role": {
+                      "type": "string",
+                      "description": "图片角色",
+                      "enum": ["first_frame", "last_frame"]
+                    }
+                  }
                 }
-              }
+              ]
             }
           },
+
           "response_format": {
             "type": "string",
             "description": "响应格式类型",

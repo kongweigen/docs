@@ -50,6 +50,10 @@
           {
             "group": "图片系列",
             "pages": ["huobao-api/images/generations"]
+          },
+          {
+            "group": "视频系列",
+            "pages": ["huobao-api/video/generations"]
           }
         ]
       },

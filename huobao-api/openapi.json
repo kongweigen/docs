@@ -403,17 +403,12 @@
                             }
                           ]
                         }
-                      },
-                      "prompt": {
-                        "type": "string",
-                        "description": "视频生成提示词",
-                        "example": "身体慢慢变化，变成敖丙模样，变化过程渐变，不突兀"
                       }
                     }
                   },
                   {
                     "type": "object",
-                    "required": ["model", "prompt", "image_url"],
+                    "required": ["model", "image_url"],
                     "properties": {
                       "model": {
                         "type": "string",
@@ -426,11 +421,6 @@
                         "description": "参考图片URL",
                         "format": "uri",
                         "example": "https://static.ppinfra.com/docs/assets/minimax-hailuo-video-02-input-image.jpg"
-                      },
-                      "prompt": {
-                        "type": "string",
-                        "description": "视频生成提示词",
-                        "example": "戴着太阳镜的毛茸茸的熊猫在日出时的雪山顶上跳舞，左移运镜"
                       },
                       "duration": {
                         "type": "integer",
